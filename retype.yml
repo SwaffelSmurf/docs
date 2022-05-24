@@ -8,6 +8,6 @@ links:
 - text: Getting Started
   link: https://retype.com/guides/getting-started/
 - text: My Website
-  link: https://swaffelsmurf.github.io/
+  link: https://swaffelsmurf.github.io/docs/retype
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
