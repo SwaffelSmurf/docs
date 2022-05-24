@@ -27,11 +27,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.706743083248" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706744485451" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706743083248" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706744485451" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706743083248" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706744485451" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -214,7 +214,32 @@ u+UH
 &gt; HTB{%s}
 :*3$&quot;</code></pre>
 </doc-codeblock></div>
-<p>Now we learned the flag should be <code v-pre>HTB{%s}</code> where the value for <code v-pre>%s</code> is still unknown.</p>
+<p>Now we learned the flag should be <code v-pre>HTB{%s}</code> where the value for <code v-pre>%s</code> is still unknown. Let&#x27;s see if <code v-pre>ltrace</code> gives us more insights.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">┌──(imuijtjens㉿kali)-[~/Downloads]
+└─$ ltrace ./behindthescenes
+--- SIGILL (Illegal instruction) ---
+--- SIGILL (Illegal instruction) ---
+./challenge &lt;password&gt;
+--- SIGILL (Illegal instruction) ---
++++ exited (status 1) +++</code></pre>
+</doc-codeblock></div>
+<p>We receive a <code v-pre>SIGILL</code>, which is a signal that the program tried to execute an illegal instruction. I&#x27;d like to see the program in <code v-pre>hexeditor</code> to reveal more information.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">┌──(imuijtjens㉿kali)-[~/Downloads]
+└─$ hexeditor behindthescenes</code></pre>
+</doc-codeblock></div>
+<p>Let&#x27;s search in the hexeditor by pressing <kbd>CTRL</kbd> + <kbd>W</kbd> and search for text string <code v-pre>challenge</code>, the argument we found in the first step.  It looks like this reveals our password and HackTheBox flag.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">00002000  01 00 02 00  2E 2F 63 68   61 6C 6C 65  6E 67 65 20       ...../challenge 
+00002010  3C 70 61 73  73 77 6F 72   64 3E 00 49  74 7A 00 5F       &lt;password&gt;.Itz._
+00002020  30 6E 00 4C  79 5F 00 55   44 32 00 3E  20 48 54 42       0n.Ly_.UD2.&gt; HTB
+00002030  7B 25 73 7D  0A 00 00 00   01 1B 03 3B  4C 00 00 00       {%s}.......;L...</code></pre>
+</doc-codeblock></div>
+<doc-panel id="reveal-flag" collapsed>
+    <template #title>Reveal Flag</template>
+<p>HTB{Itz_0nLy_UD2}</p>
+</doc-panel>
 
                                 <div class="flex items-center mt-6 mb-6 clear-both">
                                     <span>
