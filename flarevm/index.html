@@ -11,29 +11,29 @@
     <!-- Primary Meta Tags -->
     <title>FlareVM</title>
     <meta name="title" content="FlareVM">
-    <meta name="description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers." />
+    <meta name="description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform created by Mandiant." />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="/flarevm/">
     <meta property="og:title" content="FlareVM">
-    <meta property="og:description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers.">
+    <meta property="og:description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform created by Mandiant.">
     <meta property="og:image" content="/static/headers/mandiant.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="/flarevm/">
     <meta property="twitter:title" content="FlareVM">
-    <meta property="twitter:description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers.">
+    <meta property="twitter:description" content="FlareVM is a reverse engineering and malware analysis distribution on Windows platform created by Mandiant.">
     <meta property="twitter:image" content="/static/headers/mandiant.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.706793333423" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706793989735" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706793333423" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706793989735" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706793333423" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706793989735" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -200,7 +200,7 @@
     <div class="flex items-center shrink-0">Published&nbsp;<span>2022-05-25</span></div>
 </div>
 
-<p>FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers. In this post I&#x27;ll explain how to install a FlareVM on a clean Windows 11 installation.</p>
+<p>FlareVM is a reverse engineering and malware analysis distribution on Windows platform created by Mandiant. It includes a lot of tools for security researchers. In this post I&#x27;ll explain how to install a FlareVM on a clean Windows 11 installation.</p>
 <hr />
 <doc-anchor-target id="installation">
     <h1>
@@ -250,7 +250,7 @@
     </h5>
 </doc-anchor-target>
 <ul>
-<li>Download and copy <a href="https://github.com/fireeye/flare-vm/raw/master/install.ps1">install.ps1</a> onto your new VM</li>
+<li>Download and copy <a href="https://github.com/fireeye/flare-vm/raw/master/install.ps1" :target="_blank">install.ps1</a> onto your new VM</li>
 <li>Open PowerShell as an Administrator</li>
 <li>Unblock the install file by running:
 <ul>
@@ -339,7 +339,7 @@
         </div>
     </div>
 </div>
-<p>You can customize your distribution by installing additional packages. For an overview of all available packages, check the repository on <a href="https://community.chocolatey.org/packages">Chocolatey</a>. For example, to install Google Chrome, use the following command:</p>
+<p>You can customize your distribution by installing additional packages. For an overview of all available packages, check the repository on <a href="https://community.chocolatey.org/packages" :target="_blank">Chocolatey</a>. For example, to install Google Chrome, use the following command:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">cinst googlechrome</code></pre>
 </doc-codeblock></div>
