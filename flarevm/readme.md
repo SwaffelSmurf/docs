@@ -57,7 +57,7 @@ Don't forget to update your VM's network settings to `Host-Only` so that vulnera
 
 # Updates
 
-!!!primary Primary
+!!!
 In order to install updates, make sure you update your VM's netwerk settings to `NAT` to restore your internet connection.
 !!!
 
