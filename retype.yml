@@ -2,10 +2,11 @@ input: .
 output: .retype
 url: # Add your website address here
 branding:
-  title: Project Name
+  title: Ivo Muijtjens
   label: Docs
 links:
-- text: My Website
-  link: https://swaffelsmurf.github.io/docs/retype
+- text: Home
+  link: readme.md
+  icon: home
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
