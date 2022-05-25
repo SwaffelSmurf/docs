@@ -22,7 +22,6 @@ Start by downloading the file `Behind the Scenes.zip` from the HackTheBox challe
 
 We can determine it expects us to pass through a password argument. The next step is to verify what information the `strings` command reveals.
 
-```console
     ┌──(imuijtjens㉿kali)-[~/Downloads]
     └─$ strings behindthescenes -d     
     /lib64/ld-linux-x86-64.so.2
@@ -47,7 +46,6 @@ We can determine it expects us to pass through a password argument. The next ste
     ./challenge <password>
     > HTB{%s}
     :*3$"
-```
 
 Now we learned the flag should be `HTB{%s}` where the value for `%s` is still unknown. Let's see if `ltrace` gives us more insights.
 
