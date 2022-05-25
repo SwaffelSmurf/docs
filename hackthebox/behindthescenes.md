@@ -1,6 +1,9 @@
 ---
 tags: [reversing, very easy]
+categories: [hackthebox, reversing, very easy]
 icon: chevron-right
+author: Ivo Muijtjens
+date: 2022-05-25
 ---
 
 # Behind the Scenes
