@@ -1,7 +1,7 @@
 ---
 icon: sun
 ---
-![](/static/headers/flare.png)
+![](/static/headers/mandiant.png)
 
 # FlareVM
 
