@@ -18,7 +18,7 @@ FlareVM is a reverse engineering and malware analysis distribution on Windows pl
 
 #### Windows 11 Installation
 
-### Pre-installation
+##### Pre-installation
 
 - Make sure a clean Windows 11 VM is already installed
 - Disable Windows Defender
@@ -28,3 +28,25 @@ FlareVM is a reverse engineering and malware analysis distribution on Windows pl
     - Disable automatic sample submission
     - Add the directory `C:\` to the exclusion list
 - Take a snapshot of your VM
+
+##### Installation
+
+- Download and copy [install.ps1](https://github.com/fireeye/flare-vm/raw/master/install.ps1) onto your new VM
+- Open PowerShell as an Administrator
+- Unblock the install file by running:
+    - `Unblock-File .\install.ps1`
+- Enable script execution by running:
+    - `Set-ExecutionPolicy Unrestricted`
+- Finally, execute the installer script as follow:
+    - `.\install.ps1`
+    - You can also pass your password as an argument: `.\install.ps1 -password <password>`
+
+##### Post-installation
+- If the background was not successfully set:
+    - Navigate to `%PROGRAMDATA%\chocolatey\lib\flarevm.win10.config.flare\tools` and right click `flarevm.png`
+    - Right click `flarevm.png` and select `Set as desktop background`
+- Take a post-installation snapshot
+
+!!!warning Warning
+Don't forget to update your VM's networking settings to `Host-Only` so that vulnerable programs cannot hop to your host system.
+!!!
