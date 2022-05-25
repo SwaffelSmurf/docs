@@ -29,11 +29,11 @@
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=2.2.706789395572" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706791174096" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706789395572" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706791174096" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706789395572" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706791174096" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -182,6 +182,48 @@
     </h1>
 </doc-anchor-target>
 <p>FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers. In this post I&#x27;ll explain how to install a FlareVM on a clean Windows 11 installation.</p>
+<hr />
+<doc-anchor-target id="installation">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
+        <span>Installation</span>
+    </h1>
+</doc-anchor-target>
+<doc-anchor-target id="requirements">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#requirements">#</doc-anchor-trigger>
+        <span>Requirements</span>
+    </h4>
+</doc-anchor-target>
+<ul>
+<li>60 GB Hard Drive</li>
+<li>2 GB RAM</li>
+</ul>
+<doc-anchor-target id="windows-11-installation">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#windows-11-installation">#</doc-anchor-trigger>
+        <span>Windows 11 Installation</span>
+    </h4>
+</doc-anchor-target>
+<doc-anchor-target id="pre-installation">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#pre-installation">#</doc-anchor-trigger>
+        <span>Pre-installation</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li>Make sure a clean Windows 11 VM is already installed</li>
+<li>Disable Windows Defender</li>
+<li>Make sure the following settings are configured:
+<ul>
+<li>Disable real-time protection</li>
+<li>Disable cloud-delivered protection</li>
+<li>Disable automatic sample submission</li>
+<li>Add the directory <code v-pre>C:\</code> to the exclusion list</li>
+</ul>
+</li>
+<li>Take a snapshot of your VM</li>
+</ul>
 
                                 
                                 <!-- Required only on API pages -->
