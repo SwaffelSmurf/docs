@@ -14,7 +14,7 @@ After struggling to secure our secret strings for a long time, we finally figure
 ---
 
 # Writeup
-Start by downloading the files `Behind the Scenes.zip` from the HackTheBox challenge onto your Kali Linux guest system. The first thing we do is running the code and see what happens.
+Start by downloading the file `Behind the Scenes.zip` from the HackTheBox challenge onto your Kali Linux guest system. The first thing we do is running the code and see what happens.
 
     ┌──(imuijtjens㉿kali)-[~/Downloads]
     └─$ ./behindthescenes                  
@@ -22,6 +22,7 @@ Start by downloading the files `Behind the Scenes.zip` from the HackTheBox chall
 
 We can determine it expects us to pass through a password argument. The next step is to verify what information the `strings` command reveals.
 
+```console
     ┌──(imuijtjens㉿kali)-[~/Downloads]
     └─$ strings behindthescenes -d     
     /lib64/ld-linux-x86-64.so.2
@@ -46,6 +47,7 @@ We can determine it expects us to pass through a password argument. The next ste
     ./challenge <password>
     > HTB{%s}
     :*3$"
+```
 
 Now we learned the flag should be `HTB{%s}` where the value for `%s` is still unknown. Let's see if `ltrace` gives us more insights.
 
