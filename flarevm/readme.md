@@ -48,5 +48,7 @@ FlareVM is a reverse engineering and malware analysis distribution on Windows pl
 - Take a post-installation snapshot
 
 !!!warning Warning
-Don't forget to update your VM's networking settings to `Host-Only` so that vulnerable programs cannot hop to your host system.
+Don't forget to update your VM's network settings to `Host-Only` so that vulnerable programs cannot hop to your host system.
 !!!
+
+[!ref target="blank" icon="mark-github" text="Mandiant FlareVM GitHub"](https://github.com/mandiant/flare-vm)
