@@ -52,3 +52,19 @@ Don't forget to update your VM's network settings to `Host-Only` so that vulnera
 !!!
 
 [!ref target="blank" text="Mandiant FlareVM GitHub"](https://github.com/mandiant/flare-vm)
+
+---
+
+# Updates
+
+!!!primary Primary
+In order to install updates, make sure you update your VM's netwerk settings to `NAT` to restore your internet connection.
+!!!
+
+You can customize your distribution by installing additional packages. For an overview of all available packages, check the repository on [Chocolatey](https://community.chocolatey.org/packages). For example, to install Google Chrome, use the following command:
+
+    cinst googlechrome
+
+It's also important to keep your distribution up-to-date. Use the following command to update your installed packages:
+
+    cup all
