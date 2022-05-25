@@ -9,7 +9,7 @@ date: 2022-05-25
 
 # FlareVM
 
-FlareVM is a reverse engineering and malware analysis distribution on Windows platform. It includes a lot of tools for security researchers. In this post I'll explain how to install a FlareVM on a clean Windows 11 installation.
+FlareVM is a reverse engineering and malware analysis distribution on Windows platform created by Mandiant. It includes a lot of tools for security researchers. In this post I'll explain how to install a FlareVM on a clean Windows 11 installation.
 
 ---
 
@@ -35,7 +35,7 @@ FlareVM is a reverse engineering and malware analysis distribution on Windows pl
 
 ##### Installation
 
-- Download and copy [install.ps1](https://github.com/fireeye/flare-vm/raw/master/install.ps1) onto your new VM
+- Download and copy [install.ps1](https://github.com/fireeye/flare-vm/raw/master/install.ps1){:target="_blank"} onto your new VM
 - Open PowerShell as an Administrator
 - Unblock the install file by running:
     - `Unblock-File .\install.ps1`
@@ -65,7 +65,7 @@ Don't forget to update your VM's network settings to `Host-Only` so that vulnera
 In order to install updates, make sure you update your VM's netwerk settings to `NAT` to restore your internet connection.
 !!!
 
-You can customize your distribution by installing additional packages. For an overview of all available packages, check the repository on [Chocolatey](https://community.chocolatey.org/packages). For example, to install Google Chrome, use the following command:
+You can customize your distribution by installing additional packages. For an overview of all available packages, check the repository on [Chocolatey](https://community.chocolatey.org/packages){:target="_blank"}. For example, to install Google Chrome, use the following command:
 
     cinst googlechrome
 
