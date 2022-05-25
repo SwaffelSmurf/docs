@@ -3,7 +3,7 @@ tags: [hackthebox, reversing, very easy]
 categories: [hackthebox, reversing, very easy]
 icon: chevron-right
 author: Ivo Muijtjens
-avatar: /static/avatars/ivo.png
+avatar: (/static/avatars/ivo.png)
 date: 2022-05-25
 ---
 
