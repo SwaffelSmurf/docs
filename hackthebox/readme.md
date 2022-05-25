@@ -1,10 +1,12 @@
 ---
 icon: terminal
 ---
-![](/static/headers/box.png)
+![](/static/headers/boxnp.png)
 
 # HackTheBox
 
 Rooms:
 
-- [Behind the Scenes](behindthescenes.md)
+Name   | Category    | Difficulty
+---    | ---
+[Behind the Scenes](behindthescenes.md) | Reversing | Very Easy

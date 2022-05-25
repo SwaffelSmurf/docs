@@ -1,5 +1,5 @@
 ---
-tags: [reversing, very easy]
+tags: [hackthebox, reversing, very easy]
 categories: [hackthebox, reversing, very easy]
 icon: chevron-right
 author: Ivo Muijtjens
