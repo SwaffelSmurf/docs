@@ -8,8 +8,13 @@ links:
 - text: Home
   link: readme.md
   icon: home
+- text: Contact
+  link: https://ivomuijtjens.nl/contact/
+  icon: mail
+  target: blank
 footer:
   copyright: "&copy; Copyright {{ year }}. All rights reserved."
 edit:
   repo: "https://github.com/SwaffelSmurf/docs/"
   label: Edit on GitHub
+favicon: static/favicon.ico
