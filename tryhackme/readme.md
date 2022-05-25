@@ -1,7 +1,7 @@
 ---
 icon: desktop-download
 ---
-![](/static/headers/box2.png)
+![](/static/headers/thm.png)
 
 # TryHackMe
 

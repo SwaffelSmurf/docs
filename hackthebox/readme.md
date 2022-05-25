@@ -1,7 +1,7 @@
 ---
 icon: terminal
 ---
-![](/static/headers/box.png)
+![](/static/headers/htb.png)
 
 # HackTheBox
 
