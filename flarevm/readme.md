@@ -1,5 +1,9 @@
 ---
+tags: [guide]
+categories: [guide]
 icon: sun
+author: Ivo Muijtjens
+date: 2022-05-25
 ---
 ![](/static/headers/mandiant.png)
 
