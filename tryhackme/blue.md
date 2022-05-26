@@ -25,12 +25,15 @@ Deploy & hack into a Windows machine, leveraging common misconfigurations issues
 ### Reconnaissance
 
 **How many ports are open with a port number under 1000?**
+
 To answer this question I used nmap to scan for open ports and vulnerabilities.
 
     nmap -sV -p 1-999 --script vuln 10.10.209.54
 
 `-sV` enumerate versions
+
 `-p 1-999` scan all ports under 1000
+
 `--script vuln` argument to scan vulnerabilities
 
     Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-26 11:10 EDT
@@ -70,6 +73,7 @@ To answer this question I used nmap to scan for open ports and vulnerabilities.
 ===
 
 **What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)**
+
 Review the nmap output for the answer to this question.
 
 ==- Reveal Answer
@@ -80,6 +84,20 @@ ms17-010
 
 **Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)**
 
+Start Metasploit with the `msfconsole` command in your terminal. Once Metasploit Framework is initialized, we can search the vulnaribility with command: `search ms17-010`.
+
+    Matching Modules
+    ================
+
+    #  Name                                      Disclosure Date  Rank     Check  Description
+    -  ----                                      ---------------  ----     -----  -----------
+    0  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+    1  exploit/windows/smb/ms17_010_psexec       2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution
+    2  auxiliary/admin/smb/ms17_010_command      2017-03-14       normal   No     MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command Execution
+    3  auxiliary/scanner/smb/smb_ms17_010                         normal   No     MS17-010 SMB RCE Detection
+    4  exploit/windows/smb/smb_doublepulsar_rce  2017-04-14       great    Yes    SMB DOUBLEPULSAR Remote Code Execution
+
+In this case I'm interested in the EternalBlue exploit. Use the command `use 0` to select the exploit. You can also use the full name of the exploit with command `use exploit/windows/smb/ms17_010_eternalblue`.
 
 ==- Reveal Answer
 3
