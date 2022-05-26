@@ -24,15 +24,14 @@ Deploy & hack into a Windows machine, leveraging common misconfigurations issues
 
 ### Reconnaissance
 
-**Q1: How many ports are open with a port number under 1000?**
-
+**How many ports are open with a port number under 1000?**
 To answer this question I used nmap to scan for open ports and vulnerabilities.
 
     nmap -sV -p 1-999 --script vuln 10.10.209.54
 
-- -sV: enumerate versions
-- -p 1-999: scan all ports under 1000
-- --script vuln: argument to scan vulnerabilities
+`-sV` enumerate versions
+`-p 1-999` scan all ports under 1000
+`--script vuln` argument to scan vulnerabilities
 
     Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-26 11:10 EDT
     Nmap scan report for 10.10.209.54
@@ -66,22 +65,22 @@ To answer this question I used nmap to scan for open ports and vulnerabilities.
     Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
     Nmap done: 1 IP address (1 host up) scanned in 23.25 seconds
 
-==- A1: Reveal Answer
+==- Reveal Answer
 3
 ===
 
-**Q2: What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)**
-
+**What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)**
 Review the nmap output for the answer to this question.
 
-==- A2: Reveal Answer
+==- Reveal Answer
 ms17-010
 ===
 
 ### Gain Access
 
-**Q1: Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)**
+**Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)**
 
-==- A1: Reveal Answer
+
+==- Reveal Answer
 3
 ===
