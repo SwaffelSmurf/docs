@@ -100,5 +100,28 @@ Start Metasploit with the `msfconsole` command in your terminal. Once Metasploit
 In this case I'm interested in the EternalBlue exploit. Use the command `use 0` to select the exploit. You can also use the full name of the exploit with command `use exploit/windows/smb/ms17_010_eternalblue`.
 
 ==- Reveal Answer
-3
+exploit/windows/smb/ms17_010_eternalblue
+===
+
+**Show options and set the one required value. What is the name of this value? (All caps for submission)**
+
+After selecting the exploit we can show the module options with the command `show options`. Analyze the output of this command. There is one required setting that's not predefined.
+
+    Module options (exploit/windows/smb/ms17_010_eternalblue):
+
+        Name           Current Setting  Required  Description
+        ----           ---------------  --------  -----------
+        RHOSTS                          yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+        RPORT          445              yes       The target port (TCP)
+        SMBDomain                       no        (Optional) The Windows domain to use for authentication. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Stand
+                                                    ard 7 target machines.
+        SMBPass                         no        (Optional) The password for the specified username
+        SMBUser                         no        (Optional) The username to authenticate as
+        VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard
+                                                    7 target machines.
+        VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target m
+                                                    achines.
+
+==- Reveal Answer
+RHOSTS
 ===
