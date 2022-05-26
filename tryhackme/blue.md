@@ -264,7 +264,7 @@ Change directory to `C:\` and run the `dir` command.
 Use the command `type flag1.txt` to print the content of the file to your terminal.
 
 ==- Reveal Flag 1
-flag{access_the_machine}
+flag\{access_the_machine\}
 ===
 
 **Flag2? This flag can be found at the location where passwords are stored within Windows.**
@@ -274,7 +274,7 @@ The command `dir *flag*.* /s` will reveal the location of where the flags are st
 `type C:\Windows\System32\config\flag2.txt`
 
 ==- Reveal Flag 2
-flag{sam_database_elevated_access}
+flag\{sam_database_elevated_access\}
 ===
 
 **Flag3? This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved.**
@@ -282,7 +282,7 @@ flag{sam_database_elevated_access}
 `type C:\Users\Jon\Documents\flag3.txt`
 
 ==- Reveal Flag 3
-flag{admin_documents_can_be_valuable}
+flag\{admin_documents_can_be_valuable\}
 ===
 
 !!!success

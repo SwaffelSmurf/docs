@@ -72,3 +72,7 @@ Let's search in the hexeditor by pressing <kbd>CTRL</kbd> + <kbd>W</kbd> and sea
 ==- Reveal Flag
 HTB\{Itz_0nLy_UD2\}
 ===
+
+!!!success
+Congratiulations, you've completed the room.
+!!!
