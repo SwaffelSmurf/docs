@@ -284,3 +284,7 @@ flag{sam_database_elevated_access}
 ==- Reveal Flag 3
 flag{admin_documents_can_be_valuable}
 ===
+
+!!!success
+Congratiulations, you've completed the room.
+!!!
