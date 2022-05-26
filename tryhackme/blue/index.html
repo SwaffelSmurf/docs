@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.706894373927" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706894664416" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706894373927" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706894664416" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706894373927" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706894664416" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -311,18 +311,16 @@
         <span>Reconnaissance</span>
     </h3>
 </doc-anchor-target>
-<p><strong>Q1: How many ports are open with a port number under 1000?</strong></p>
-<p>To answer this question I used nmap to scan for open ports and vulnerabilities.</p>
+<p><strong>How many ports are open with a port number under 1000?</strong>
+To answer this question I used nmap to scan for open ports and vulnerabilities.</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">nmap -sV -p 1-999 --script vuln 10.10.209.54</code></pre>
 </doc-codeblock></div>
-<ul>
-<li><p>-sV: enumerate versions</p>
-</li>
-<li><p>-p 1-999: scan all ports under 1000</p>
-</li>
-<li><p>--script vuln: argument to scan vulnerabilities</p>
-<p>Starting Nmap 7.92 ( <a href="https://nmap.org">https://nmap.org</a> ) at 2022-05-26 11:10 EDT
+<p><code v-pre>-sV</code> enumerate versions
+<code v-pre>-p 1-999</code> scan all ports under 1000
+<code v-pre>--script vuln</code> argument to scan vulnerabilities</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-26 11:10 EDT
 Nmap scan report for 10.10.209.54
 Host is up (0.028s latency).
 Not shown: 996 closed tcp ports (conn-refused)
@@ -330,12 +328,13 @@ PORT    STATE SERVICE      VERSION
 135/tcp open  msrpc        Microsoft Windows RPC
 139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn
 445/tcp open  microsoft-ds Microsoft Windows 7 - 10 microsoft-ds (workgroup: WORKGROUP)
-Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows</p>
-<p>Host script results:
+Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
 |_smb-vuln-ms10-054: false
 |_samba-vuln-cve-2012-1182: NT_STATUS_ACCESS_DENIED
-|<em>smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
-| smb-vuln-ms17-010:
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+| smb-vuln-ms17-010: 
 |   VULNERABLE:
 |   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
 |     State: VULNERABLE
@@ -343,24 +342,24 @@ Service Info: Host: JON-PC; OS: Windows; CPE: cpe:/o:microsoft:windows</p>
 |     Risk factor: HIGH
 |       A critical remote code execution vulnerability exists in Microsoft SMBv1
 |        servers (ms17-010).
-|<br />
+|           
 |     Disclosure date: 2017-03-14
 |     References:
-|       <a href="https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/">https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/</a>
-|       <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143">https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143</a>
-|</em>      <a href="https://technet.microsoft.com/en-us/library/security/ms17-010.aspx">https://technet.microsoft.com/en-us/library/security/ms17-010.aspx</a></p>
-<p>Service detection performed. Please report any incorrect results at <a href="https://nmap.org/submit/">https://nmap.org/submit/</a> .
-Nmap done: 1 IP address (1 host up) scanned in 23.25 seconds</p>
-</li>
-</ul>
-<doc-panel id="a1-reveal-answer" collapsed>
-    <template #title>A1: Reveal Answer</template>
+|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 23.25 seconds</code></pre>
+</doc-codeblock></div>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
 <p>3</p>
 </doc-panel>
-<p><strong>Q2: What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)</strong></p>
-<p>Review the nmap output for the answer to this question.</p>
-<doc-panel id="a2-reveal-answer" collapsed>
-    <template #title>A2: Reveal Answer</template>
+<p><strong>What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067)</strong>
+Review the nmap output for the answer to this question.</p>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
 <p>ms17-010</p>
 </doc-panel>
 <doc-anchor-target id="gain-access">
@@ -369,9 +368,9 @@ Nmap done: 1 IP address (1 host up) scanned in 23.25 seconds</p>
         <span>Gain Access</span>
     </h3>
 </doc-anchor-target>
-<p><strong>Q1: Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)</strong></p>
-<doc-panel id="a1-reveal-answer" collapsed>
-    <template #title>A1: Reveal Answer</template>
+<p><strong>Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)</strong></p>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
 <p>3</p>
 </doc-panel>
 
