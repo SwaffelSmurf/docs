@@ -5,6 +5,7 @@ icon: chevron-right
 author: Ivo Muijtjens
 date: 2022-05-25
 ---
+![](/static/headers/reverse.png)
 
 # Behind the Scenes
 
