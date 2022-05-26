@@ -9,7 +9,6 @@ date: 2022-05-25
 
 # Behind the Scenes
 
-#### Challenge Description
 After struggling to secure our secret strings for a long time, we finally figured out the solution to our problem: Make decompilation harder. It should now be impossible to figure out how our programs work!
 
 ---
