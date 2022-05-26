@@ -22,6 +22,8 @@ Deploy & hack into a Windows machine, leveraging common misconfigurations issues
 
 # Writeup
 
+#### Reconnaissance
+
 * Q1: How many ports are open with a port number under 1000?
 
 To answer this question I used nmap to scan open ports and vulnerabilities.
