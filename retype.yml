@@ -1,6 +1,6 @@
 input: .
 output: .retype
-url: # Add your website address here
+url: docs.ivomuijtjens.nl
 branding:
   title: Ivo Muijtjens
   label: Docs
@@ -18,3 +18,8 @@ edit:
   repo: "https://github.com/SwaffelSmurf/docs/"
   label: Edit on GitHub
 favicon: static/favicon.ico
+integrations:
+  googleAnalytics:
+    id: G-77BVC9KX4X
+  googleTagManager:
+    id: G-77BVC9KX4X
