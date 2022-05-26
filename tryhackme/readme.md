@@ -7,4 +7,6 @@ icon: desktop-download
 
 Rooms:
 
-- [Test](test.md)
+Name   | Category    | Difficulty
+---    | ---
+[Blue](blue.md) | Exploit | Easy
