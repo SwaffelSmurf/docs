@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.706895143529" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.706895459428" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706895143529" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.706895459428" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706895143529" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.706895459428" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -385,7 +385,29 @@ Nmap done: 1 IP address (1 host up) scanned in 23.25 seconds</code></pre>
 <p>In this case I&#x27;m interested in the EternalBlue exploit. Use the command <code v-pre>use 0</code> to select the exploit. You can also use the full name of the exploit with command <code v-pre>use exploit/windows/smb/ms17_010_eternalblue</code>.</p>
 <doc-panel id="reveal-answer" collapsed>
     <template #title>Reveal Answer</template>
-<p>3</p>
+<p>exploit/windows/smb/ms17_010_eternalblue</p>
+</doc-panel>
+<p><strong>Show options and set the one required value. What is the name of this value? (All caps for submission)</strong></p>
+<p>After selecting the exploit we can show the module options with the command <code v-pre>show options</code>. Analyze the output of this command. There is one required setting that&#x27;s not predefined.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Module options (exploit/windows/smb/ms17_010_eternalblue):
+
+    Name           Current Setting  Required  Description
+    ----           ---------------  --------  -----------
+    RHOSTS                          yes       The target host(s), see https://github.com/rapid7/metasploit-framework/wiki/Using-Metasploit
+    RPORT          445              yes       The target port (TCP)
+    SMBDomain                       no        (Optional) The Windows domain to use for authentication. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Stand
+                                                ard 7 target machines.
+    SMBPass                         no        (Optional) The password for the specified username
+    SMBUser                         no        (Optional) The username to authenticate as
+    VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard
+                                                7 target machines.
+    VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 target m
+                                                achines.</code></pre>
+</doc-codeblock></div>
+<doc-panel id="reveal-answer" collapsed>
+    <template #title>Reveal Answer</template>
+<p>RHOSTS</p>
 </doc-panel>
 
                                 <div class="flex items-center mt-6 mb-6 clear-both">
