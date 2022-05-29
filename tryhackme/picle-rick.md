@@ -64,9 +64,41 @@ We see the developer made a HTML comment between the `<!-- -->` tags. Now we kno
 
     -->
 
+I've use the tool dirsearch to scan the webserver: `dirsearch -u http://10-10-92-155.p.thmlabs.com/`. The tool found some interesting files and directories to work with.
+
+    [06:45:04] 200 -    2KB - /assets/
+    [06:45:10] 200 -    1KB - /index.html                                       
+    [06:45:12] 200 -  882B  - /login.php                                        
+    [06:45:18] 200 -   17B  - /robots.txt
+
+First thing I did was checking the files in the assets folder. It contains some images plus .css and .js files. I can't find something useful in here.
+
+![Assets](/static/images/assets.png)
+
+The `index.html` file is the default homepage. Next is a `login.php` file which is the most interesting file. Let's open this in our browser to see what is does:
+
+![Portal login page](/static/images/login.png)
+
+A login page that requires a username and password. We found out about the username, but we don't have a password. First of all, let's check the last file that we found with dirsearch: `robots.txt`. This file tells search engine crawlers which URL's it may access on a webserver. This file contains a weird word: `Wubbalubbadubdub`. Could this be our password? Let's try it out on the login page.
+
+**Username:** R1ckRul3s
+**Password:** Wubbalubbadubdub
+
+We're in and have been redirected to `portal.php`. Type in `ls` to list all files and directories. I see 2 interesting files: `Sup3rS3cretPickl3Ingred.txt` and `clue.txt`.
+
+![Command panel](/static/images/command.png)
+
+Let's try the command `cat Sup3rS3cretPickl3Ingred.txt` to see if we can read the contents of the file. The command is disabled.
+
+![Command disabled](/static/images/disabled.png)
+
+We have another utility in Linux to read file contents, let's try the `less` command: `less Sup3rS3cretPickl3Ingred.txt`. That command isn't blocked. We found our first flag.
+
 ==- Reveal Flag 1
 mr. meeseek hair
 ===
+
+**Whats the second ingredient Rick needs?**
 
 !!!success
 Congratiulations, you've completed the room.
