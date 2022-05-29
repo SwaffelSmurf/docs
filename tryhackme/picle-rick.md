@@ -82,6 +82,7 @@ The `index.html` file is the default homepage. Next is a `login.php` file which 
 A login page that requires a username and password. We found out about the username, but we don't have a password. First of all, let's check the last file that we found with dirsearch: `robots.txt`. This file tells search engine crawlers which URL's it may access on a webserver. This file contains a weird word: `Wubbalubbadubdub`. Could this be our password? Let's try it out on the login page.
 
 **Username:** R1ckRul3s
+
 **Password:** Wubbalubbadubdub
 
 We're in and have been redirected to `portal.php`. Type in `ls` to list all files and directories. I see 2 interesting files: `Sup3rS3cretPickl3Ingred.txt` and `clue.txt`.
