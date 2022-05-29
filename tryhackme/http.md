@@ -27,7 +27,7 @@ HyperText Transfer Protocol
 
 Secure
 
-**What does the S in HTTPS stand for?**
+**On the mock webpage on the right there is an issue, once you've found it, click on it. What is the challenge flag?**
 
 Click on the lock to examine the SSL certificate. It will pop-up the first flag.
 
