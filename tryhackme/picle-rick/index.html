@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707135895948" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707137809420" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707135895948" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707137809420" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707135895948" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707137809420" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -354,10 +354,46 @@ Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds</code></pre>
 
 --&gt;</code></pre>
 </doc-codeblock></div>
+<p>I&#x27;ve use the tool dirsearch to scan the webserver: <code v-pre>dirsearch -u http://10-10-92-155.p.thmlabs.com/</code>. The tool found some interesting files and directories to work with.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">[06:45:04] 200 -    2KB - /assets/
+[06:45:10] 200 -    1KB - /index.html                                       
+[06:45:12] 200 -  882B  - /login.php                                        
+[06:45:18] 200 -   17B  - /robots.txt</code></pre>
+</doc-codeblock></div>
+<p>First thing I did was checking the files in the assets folder. It contains some images plus .css and .js files. I can&#x27;t find something useful in here.</p>
+<p><figure class="content-center">
+    <img src="/static/images/assets.png" alt="Assets" />
+    <figcaption class="caption">Assets</figcaption>
+</figure>
+</p>
+<p>The <code v-pre>index.html</code> file is the default homepage. Next is a <code v-pre>login.php</code> file which is the most interesting file. Let&#x27;s open this in our browser to see what is does:</p>
+<p><figure class="content-center">
+    <img src="/static/images/login.png" alt="Portal login page" />
+    <figcaption class="caption">Portal login page</figcaption>
+</figure>
+</p>
+<p>A login page that requires a username and password. We found out about the username, but we don&#x27;t have a password. First of all, let&#x27;s check the last file that we found with dirsearch: <code v-pre>robots.txt</code>. This file tells search engine crawlers which URL&#x27;s it may access on a webserver. This file contains a weird word: <code v-pre>Wubbalubbadubdub</code>. Could this be our password? Let&#x27;s try it out on the login page.</p>
+<p><strong>Username:</strong> R1ckRul3s
+<strong>Password:</strong> Wubbalubbadubdub</p>
+<p>We&#x27;re in and have been redirected to <code v-pre>portal.php</code>. Type in <code v-pre>ls</code> to list all files and directories. I see 2 interesting files: <code v-pre>Sup3rS3cretPickl3Ingred.txt</code> and <code v-pre>clue.txt</code>.</p>
+<p><figure class="content-center">
+    <img src="/static/images/command.png" alt="Command panel" />
+    <figcaption class="caption">Command panel</figcaption>
+</figure>
+</p>
+<p>Let&#x27;s try the command <code v-pre>cat Sup3rS3cretPickl3Ingred.txt</code> to see if we can read the contents of the file. The command is disabled.</p>
+<p><figure class="content-center">
+    <img src="/static/images/disabled.png" alt="Command disabled" />
+    <figcaption class="caption">Command disabled</figcaption>
+</figure>
+</p>
+<p>We have another utility in Linux to read file contents, let&#x27;s try the <code v-pre>less</code> command: <code v-pre>less Sup3rS3cretPickl3Ingred.txt</code>. That command isn&#x27;t blocked. We found our first flag.</p>
 <doc-panel id="reveal-flag-1" collapsed>
     <template #title>Reveal Flag 1</template>
 <p>mr. meeseek hair</p>
 </doc-panel>
+<p><strong>Whats the second ingredient Rick needs?</strong></p>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
