@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707137809420" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707138508925" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707137809420" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707138508925" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707137809420" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707138508925" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -394,6 +394,20 @@ Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds</code></pre>
 <p>mr. meeseek hair</p>
 </doc-panel>
 <p><strong>Whats the second ingredient Rick needs?</strong></p>
+<p>Remember there was a second file called <code v-pre>clue.txt</code>. Let&#x27;s find out if it can lead us to other flags. Type in <code v-pre>less clue.txt</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">Look around the file system for the other ingredient.</code></pre>
+</doc-codeblock></div>
+<p>So we can find the other flags by looking around in the file system. First I&#x27;m gonna check if there is a home folder. To combine command I&#x27;m gonna use the <code v-pre>&amp;&amp;</code> operator, since the portal page changes back to the webroot after every executed command. The first command I used is <code v-pre>cd /home &amp;&amp; ls</code>. The output shows me there are 2 homefolders:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">rick
+ubuntu</code></pre>
+</doc-codeblock></div>
+<p>Let&#x27;s check the contents of the folder <code v-pre>rick</code>. Change the command to <code v-pre>cd /home/rick &amp;&amp; ls</code> and execute it. Cool, there is a file called <code v-pre>second ingredients</code>. Let&#x27;s open it with the <code v-pre>less /home/rick/'second ingredients'</code> command. There is our second flag.</p>
+<doc-panel id="reveal-flag-2" collapsed>
+    <template #title>Reveal Flag 2</template>
+<p>1 jerry tear</p>
+</doc-panel>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
     <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
