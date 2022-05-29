@@ -10,3 +10,4 @@ Rooms:
 Name   | Category    | Difficulty
 ---    | ---
 [Blue](blue.md) | Exploit | Easy
+[Pickle Rick](pickle-rick.md) | Exploit | Easy
