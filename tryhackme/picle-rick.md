@@ -118,7 +118,7 @@ Let's check the contents of the folder `rick`. Change the command to `cd /home/r
 
 **Whats the final ingredient Rick needs?**
 
-What other files can I found on the file system? Let's see if I'm able to run sudo with the command `sudo -l`.
+What other files can I find on the file system? Let's see if I'm able to run sudo with the command `sudo -l`.
 
     Matching Defaults entries for www-data on ip-10-10-92-155.eu-west-1.compute.internal:
         env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
