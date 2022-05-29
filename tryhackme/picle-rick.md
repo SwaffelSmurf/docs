@@ -5,7 +5,7 @@ icon: chevron-right
 author: Ivo Muijtjens
 date: 2022-05-29
 ---
-![](/static/headers/picle-rick.png)
+![](/static/headers/pickle-rick.png)
 
 # Pickle Rick
 
@@ -46,7 +46,23 @@ First step is to start with enumeration. Let's start with a nmap scan on the IP-
     Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
     Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds
 
-The nmap scan gives us some information. There are 2 open ports: 22 (SSH) and 80 (HTTP). The webserver runs on Apache 2.4.18.
+The nmap scan gives us some information. There are 2 open ports: 22 (SSH) and 80 (HTTP). The webserver runs on Apache 2.4.18. Let's open the webpage in our browser to investigate it a little more.
+
+![Homepage of the website](/static/images/website.png)
+
+No useful data visible on the homepage. What if we view the page source?
+
+![Page source of the website](/static/images/pagesource.png)
+
+We see the developer made a HTML comment between the `<!-- -->` tags. Now we know the username, but how can we use it? The homepage looks like a static webpage without a login form. Let's dig in a little further.
+
+    <!--
+
+        Note to self, remember username!
+
+        Username: R1ckRul3s
+
+    -->
 
 ==- Reveal Flag 1
 mr. meeseek hair
