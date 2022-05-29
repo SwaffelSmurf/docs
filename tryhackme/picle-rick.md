@@ -136,7 +136,7 @@ Yes, I can. Now that I've confirmed I can run sudo, I'm able to access the root 
     -rw-r--r--  1 root root   29 Feb 10  2019 3rd.txt
     drwxr-xr-x  3 root root 4096 Feb 10  2019 snap
 
-There is a file called `3rd.txt` that might be interesting. Let read the contents with command `sudo less /root/3rd.txt`. This file contains our last flag.
+There is a file called `3rd.txt` that might be interesting. Let's read the contents with command `sudo less /root/3rd.txt`. This file contains our last flag.
 
 ==- Reveal Flag 3
 fleeb juice
