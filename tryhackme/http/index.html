@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707159153701" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707159237518" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707159153701" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707159237518" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707159153701" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707159237518" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -257,7 +257,7 @@
 </p>
 <doc-panel id="reveal-flag-1" collapsed>
     <template #title>Reveal Flag 1</template>
-<p INVALID_HTTP_CERT="">THM</p>
+<p>THM{INVALID_HTTP_CERT}</p>
 </doc-panel>
 <doc-anchor-target id="task-2-requests-and-responses">
     <h3>
@@ -343,7 +343,7 @@
 </p>
 <doc-panel id="reveal-flag-2" collapsed>
     <template #title>Reveal Flag 2</template>
-<p YOU_FOUND_THE_BLOG="">THM</p>
+<p>THM{YOU_FOUND_THE_BLOG}</p>
 </doc-panel>
 <p><strong>Make a DELETE request to /user/1</strong></p>
 <p>Change the method to <code v-pre>DELETE</code> and the URL to <code v-pre>/user/1</code>. Flag will be displayed in the response.</p>
@@ -354,7 +354,7 @@
 </p>
 <doc-panel id="reveal-flag-3" collapsed>
     <template #title>Reveal Flag 3</template>
-<p USER_IS_DELETED="">THM</p>
+<p>THM{USER_IS_DELETED}</p>
 </doc-panel>
 <p><strong>Make a PUT request to /user/2 with the username parameter set to admin</strong></p>
 <p>Change the method to <code v-pre>PUT</code> and the URL to <code v-pre>/user/2</code>.  Change the parameter <code v-pre>username</code> to <code v-pre>admin</code>. Flag will be displayed in the response.</p>
@@ -365,7 +365,7 @@
 </p>
 <doc-panel id="reveal-flag-4" collapsed>
     <template #title>Reveal Flag 4</template>
-<p USER_HAS_UPDATED="">THM</p>
+<p>THM{USER_HAS_UPDATED}</p>
 </doc-panel>
 <p><strong>POST the username of thm and a password of letmein to /login</strong></p>
 <p>Change the method to <code v-pre>POST</code> and the URL to <code v-pre>/login</code>.  Change the parameter <code v-pre>username</code> to <code v-pre>thm</code>, and the parameter <code v-pre>password</code> to <code v-pre>letmein</code>. Flag will be displayed in the response.</p>
@@ -376,7 +376,7 @@
 </p>
 <doc-panel id="reveal-flag-5" collapsed>
     <template #title>Reveal Flag 5</template>
-<p HTTP_REQUEST_MASTER="">THM</p>
+<p>THM{HTTP_REQUEST_MASTER}</p>
 </doc-panel>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-green-500"></div>
