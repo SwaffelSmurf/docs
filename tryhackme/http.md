@@ -1,146 +1,158 @@
 ---
-tags: [tryhackme, exploit, easy]
-categories: [tryhackme, exploit, easy]
+tags: [tryhackme, web, very easy]
+categories: [tryhackme, web, very easy]
 icon: chevron-right
 author: Ivo Muijtjens
 date: 2022-05-29
 ---
-![](/static/headers/pickle-rick.png)
+![](/static/headers/http.png)
 
-# Pickle Rick
+# Web Fundamentals
 
-This Rick and Morty themed challenge requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform himself back into a human from a pickle. As preparation for this room, I recommend following the Web Hacking Fundamentals path to get familair with the commands:
+Learn about how you request content from a web server using the HTTP protocol. This is a very easy room explaining how the world wide web works. Check the video from TryHackMe for a very detailed walkthrough.
 
-[!ref target="blank" text="How websites work" icon="../static/icons/websites.png"](https://tryhackme.com/room/howwebsiteswork)
-[!ref target="blank" text="HTTP in detail" icon="../static/icons/http.png"](https://tryhackme.com/room/httpindetail)
-[!ref target="blank" text="Burp Suite: The Basics" icon="../static/icons/burp.png"](https://tryhackme.com/room/burpsuitebasics)
-[!ref target="blank" text="OWASP Top 10" icon="../static/icons/owasp.png"](https://tryhackme.com/room/owasptop10)
-[!ref target="blank" text="OWASP Juice Shop" icon="../static/icons/juice.png"](https://tryhackme.com/room/owaspjuiceshop)
-[!ref target="blank" text="Upload Vulnerabilities" icon="../static/icons/vulnerabilities.png"](https://tryhackme.com/room/uploadvulns)
+[!embed](https://www.youtube.com/watch?v=XZyapIKV3Rw)
 
 ---
 
 # Writeup
 
-### Enumeration
+### Task 1: What is HTTP(S)?
 
-**What is the first ingredient Rick needs?**
+**What does HTTP stand for?**
 
-First step is to start with enumeration. Let's start with a nmap scan on the IP-address of the webserver: `nmap -A 10.10.92.155 -Pn`.
+HyperText Transfer Protocol
 
-    Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-29 06:11 EDT
-    Nmap scan report for 10.10.92.155
-    Host is up (0.035s latency).
-    Not shown: 998 closed tcp ports (conn-refused)
-    PORT   STATE SERVICE VERSION
-    22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.6 (Ubuntu Linux; protocol 2.0)
-    | ssh-hostkey: 
-    |   2048 ea:6b:0c:04:ff:3b:ce:b6:53:30:83:5e:94:26:e3:30 (RSA)
-    |   256 b8:cf:b9:98:7d:c5:10:62:e1:76:ea:fa:cc:d5:43:95 (ECDSA)
-    |_  256 c1:8f:c0:60:46:f4:e9:72:fb:e8:5f:40:15:a6:eb:98 (ED25519)
-    80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
-    |_http-title: Rick is sup4r cool
-    |_http-server-header: Apache/2.4.18 (Ubuntu)
-    Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+**What does the S in HTTPS stand for?**
 
-    Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-    Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds
+Secure
 
-The nmap scan gives us some information. There are 2 open ports: 22 (SSH) and 80 (HTTP). The webserver runs on Apache 2.4.18. Let's open the webpage in our browser to investigate it a little more.
+**What does the S in HTTPS stand for?**
 
-![Homepage of the website](/static/images/website.png)
+Click on the lock to examine the SSL certificate. It will pop-up the first flag.
 
-No useful data visible on the homepage. What if we view the page source?
-
-![Page source of the website](/static/images/pagesource.png)
-
-We see the developer made a HTML comment between the `<!-- -->` tags. Now we know the username, but how can we use it? The homepage looks like a static webpage without a login form. Let's dig in a little further.
-
-    <!--
-
-        Note to self, remember username!
-
-        Username: R1ckRul3s
-
-    -->
-
-I've use the tool dirsearch to scan the webserver: `dirsearch -u http://10-10-92-155.p.thmlabs.com/`. The tool found some interesting files and directories to work with.
-
-    [06:45:04] 200 -    2KB - /assets/
-    [06:45:10] 200 -    1KB - /index.html                                       
-    [06:45:12] 200 -  882B  - /login.php                                        
-    [06:45:18] 200 -   17B  - /robots.txt
-
-First thing I did was checking the files in the assets folder. It contains some images plus .css and .js files. I can't find something useful in here.
-
-![Assets](/static/images/assets.png)
-
-The `index.html` file is the default homepage. Next is a `login.php` file which is the most interesting file. Let's open this in our browser to see what is does:
-
-![Portal login page](/static/images/login.png)
-
-A login page that requires a username and password. We found out about the username, but we don't have a password. First of all, let's check the last file that we found with dirsearch: `robots.txt`. This file tells search engine crawlers which URL's it may access on a webserver. This file contains a weird word: `Wubbalubbadubdub`. Could this be our password? Let's try it out on the login page.
-
-**Username:** R1ckRul3s
-
-**Password:** Wubbalubbadubdub
-
-We're in and have been redirected to `portal.php`. Type in `ls` to list all files and directories. I see 2 interesting files: `Sup3rS3cretPickl3Ingred.txt` and `clue.txt`.
-
-![Command panel](/static/images/command.png)
-
-Let's try the command `cat Sup3rS3cretPickl3Ingred.txt` to see if we can read the contents of the file. The command is disabled.
-
-![Command disabled](/static/images/disabled.png)
-
-We have another utility in Linux to read file contents, let's try the `less` command: `less Sup3rS3cretPickl3Ingred.txt`. That command isn't blocked. We found our first flag.
+![Examine the SSL certificate](/static/images/ssl.png)
 
 ==- Reveal Flag 1
-mr. meeseek hair
+THM{INVALID_HTTP_CERT}
 ===
 
-**Whats the second ingredient Rick needs?**
+### Task 2: Requests And Responses
 
-Remember there was a second file called `clue.txt`. Let's find out if it can lead us to other flags. Type in `less clue.txt`.
+**What HTTP protocol is being used in the above example?**
 
-    Look around the file system for the other ingredient.
+HTTP/1.1
 
-So we can find the other flags by looking around in the file system. First I'm gonna check if there is a home folder. To combine command I'm gonna use the `&&` operator, since the portal page changes back to the webroot after every executed command. The first command I used is `cd /home && ls`. The output shows me there are 2 homefolders:
+**What response header tells the browser how much data to expect?**
 
-    rick
-    ubuntu
+Content-Length
 
-Let's check the contents of the folder `rick`. Change the command to `cd /home/rick && ls` and execute it. Cool, there is a file called `second ingredients`. Let's open it with the `less /home/rick/'second ingredients'` command. There is our second flag.
+### Task 3: HTTP Methods
+
+**What method would be used to create a new user account?**
+
+POST
+
+**What method would be used to update your email address?**
+
+PUT
+
+**What method would be used to remove a picture you've uploaded to your account?**
+
+DELETE
+
+**What method would be used to view a news article?**
+
+GET
+
+### Task 4: HTTP Status Codes
+
+**What response code might you receive if you've created a new user or blog post article?**
+
+201
+
+**What response code might you receive if you've tried to access a page that doesn't exist?**
+
+404
+
+**What response code might you receive if the web server cannot access its database and the application crashes?**
+
+503
+
+**What response code might you receive if you try to edit your profile without logging in first?**
+
+401
+
+### Task 5: Headers
+
+**What header tells the web server what browser is being used?**
+
+User-Agent
+
+**What header tells the browser what type of data is being returned?**
+
+Content-Type
+
+**What header tells the web server which website is being requested?**
+
+Host
+
+### Task 6: Cookies
+
+**Which header is used to save cookies to your computer?**
+
+Set-Cookie
+
+### Task 7: Making Requests
+
+**Make a GET request to /room**
+
+Change the method to `GET` and the URL to `/room`. Flag will be displayed in the response.
+
+![GET request](/static/images/get.png)
+
+==- Reveal Flag 1
+THM{YOU'RE_IN_THE_ROOM}
+===
+
+**Make a GET request to /blog and using the gear icon set the id parameter to 1 in the URL field**
+
+Change the method to `GET` and the URL to `/blog`. Change the parameter `id` to `1`. Flag will be displayed in the response.
+
+![GET request with parameter](/static/images/getblog.png)
 
 ==- Reveal Flag 2
-1 jerry tear
+THM{YOU_FOUND_THE_BLOG}
 ===
 
-**Whats the final ingredient Rick needs?**
+**Make a DELETE request to /user/1**
 
-What other files can I find on the file system? Let's see if I'm able to run sudo with the command `sudo -l`.
+Change the method to `DELETE` and the URL to `/user/1`. Flag will be displayed in the response.
 
-    Matching Defaults entries for www-data on ip-10-10-92-155.eu-west-1.compute.internal:
-        env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
-
-    User www-data may run the following commands on ip-10-10-92-155.eu-west-1.compute.internal:
-        (ALL) NOPASSWD: ALL
-
-Yes, I can. Now that I've confirmed I can run sudo, I'm able to access the root directory. I can list the contents with command `sudo ls -la /root`.
-
-    total 28
-    drwx------  4 root root 4096 Feb 10  2019 .
-    drwxr-xr-x 23 root root 4096 May 29 10:10 ..
-    -rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
-    -rw-r--r--  1 root root  148 Aug 17  2015 .profile
-    drwx------  2 root root 4096 Feb 10  2019 .ssh
-    -rw-r--r--  1 root root   29 Feb 10  2019 3rd.txt
-    drwxr-xr-x  3 root root 4096 Feb 10  2019 snap
-
-There is a file called `3rd.txt` that might be interesting. Let's read the contents with command `sudo less /root/3rd.txt`. This file contains our last flag.
+![DELETE request](/static/images/delete.png)
 
 ==- Reveal Flag 3
-fleeb juice
+THM{USER_IS_DELETED}
+===
+
+**Make a PUT request to /user/2 with the username parameter set to admin**
+
+Change the method to `PUT` and the URL to `/user/2`.  Change the parameter `username` to `admin`. Flag will be displayed in the response.
+
+![PUT request](/static/images/put.png)
+
+==- Reveal Flag 4
+THM{USER_HAS_UPDATED}
+===
+
+**POST the username of thm and a password of letmein to /login**
+
+Change the method to `POST` and the URL to `/login`.  Change the parameter `username` to `thm`, and the parameter `password` to `letmein`. Flag will be displayed in the response.
+
+![POST request](/static/images/post.png)
+
+==- Reveal Flag 5
+THM{HTTP_REQUEST_MASTER}
 ===
 
 !!!success
