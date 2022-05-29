@@ -100,6 +100,21 @@ mr. meeseek hair
 
 **Whats the second ingredient Rick needs?**
 
+Remember there was a second file called `clue.txt`. Let's find out if it can lead us to other flags. Type in `less clue.txt`.
+
+    Look around the file system for the other ingredient.
+
+So we can find the other flags by looking around in the file system. First I'm gonna check if there is a home folder. To combine command I'm gonna use the `&&` operator, since the portal page changes back to the webroot after every executed command. The first command I used is `cd /home && ls`. The output shows me there are 2 homefolders:
+
+    rick
+    ubuntu
+
+Let's check the contents of the folder `rick`. Change the command to `cd /home/rick && ls` and execute it. Cool, there is a file called `second ingredients`. Let's open it with the `less /home/rick/'second ingredients'` command. There is our second flag.
+
+==- Reveal Flag 2
+1 jerry tear
+===
+
 !!!success
 Congratiulations, you've completed the room.
 !!!
