@@ -115,6 +115,33 @@ Let's check the contents of the folder `rick`. Change the command to `cd /home/r
 1 jerry tear
 ===
 
+**Whats the final ingredient Rick needs?**
+
+What other files can I found on the file system? Let's see if I'm able to run sudo with the command `sudo -l`.
+
+    Matching Defaults entries for www-data on ip-10-10-92-155.eu-west-1.compute.internal:
+        env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+    User www-data may run the following commands on ip-10-10-92-155.eu-west-1.compute.internal:
+        (ALL) NOPASSWD: ALL
+
+Yes, I can. Now that I've confirmed I can run sudo, I'm able to access the root directory. I can list the contents with command `sudo ls -la /root`.
+
+    total 28
+    drwx------  4 root root 4096 Feb 10  2019 .
+    drwxr-xr-x 23 root root 4096 May 29 10:10 ..
+    -rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
+    -rw-r--r--  1 root root  148 Aug 17  2015 .profile
+    drwx------  2 root root 4096 Feb 10  2019 .ssh
+    -rw-r--r--  1 root root   29 Feb 10  2019 3rd.txt
+    drwxr-xr-x  3 root root 4096 Feb 10  2019 snap
+
+There is a file called `3rd.txt` that might be interesting. Let read the contents with command `sudo less /root/3rd.txt`. This file contains our last flag.
+
+==- Reveal Flag 3
+fleeb juice
+===
+
 !!!success
 Congratiulations, you've completed the room.
 !!!
