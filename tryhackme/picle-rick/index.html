@@ -23,21 +23,23 @@
     <meta property="og:url" content="https://docs.ivomuijtjens.nl/tryhackme/picle-rick/">
     <meta property="og:title" content="Pickle Rick">
     <meta property="og:description" content="This Rick and Morty themed challenge requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform...">
+    <meta property="og:image" content="https://docs.ivomuijtjens.nl/static/headers/pickle-rick.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://docs.ivomuijtjens.nl/tryhackme/picle-rick/">
     <meta property="twitter:title" content="Pickle Rick">
     <meta property="twitter:description" content="This Rick and Morty themed challenge requires you to exploit a webserver to find 3 ingredients that will help Rick make his potion to transform...">
+    <meta property="twitter:image" content="https://docs.ivomuijtjens.nl/static/headers/pickle-rick.png">
 
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707134585086" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707135895948" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707134585086" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707135895948" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707134585086" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707135895948" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -190,7 +192,7 @@
                 
                                 <!-- Page content  -->
 <p><figure class="content-center">
-    <img src="/static/headers/picle-rick.png" alt="" />
+    <img src="/static/headers/pickle-rick.png" alt="" />
     <figcaption class="caption"></figcaption>
 </figure>
 </p>
@@ -330,7 +332,28 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 9.26 seconds</code></pre>
 </doc-codeblock></div>
-<p>The nmap scan gives us some information. There are 2 open ports: 22 (SSH) and 80 (HTTP). The webserver runs on Apache 2.4.18.</p>
+<p>The nmap scan gives us some information. There are 2 open ports: 22 (SSH) and 80 (HTTP). The webserver runs on Apache 2.4.18. Let&#x27;s open the webpage in our browser to investigate it a little more.</p>
+<p><figure class="content-center">
+    <img src="/static/images/website.png" alt="Homepage of the website" />
+    <figcaption class="caption">Homepage of the website</figcaption>
+</figure>
+</p>
+<p>No useful data visible on the homepage. What if we view the page source?</p>
+<p><figure class="content-center">
+    <img src="/static/images/pagesource.png" alt="Page source of the website" />
+    <figcaption class="caption">Page source of the website</figcaption>
+</figure>
+</p>
+<p>We see the developer made a HTML comment between the <code v-pre>&lt;!-- --&gt;</code> tags. Now we know the username, but how can we use it? The homepage looks like a static webpage without a login form. Let&#x27;s dig in a little further.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">&lt;!--
+
+    Note to self, remember username!
+
+    Username: R1ckRul3s
+
+--&gt;</code></pre>
+</doc-codeblock></div>
 <doc-panel id="reveal-flag-1" collapsed>
     <template #title>Reveal Flag 1</template>
 <p>mr. meeseek hair</p>
