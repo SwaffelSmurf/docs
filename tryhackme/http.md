@@ -34,7 +34,7 @@ Click on the lock to examine the SSL certificate. It will pop-up the first flag.
 ![Examine the SSL certificate](/static/images/ssl.png)
 
 ==- Reveal Flag 1
-THM{INVALID_HTTP_CERT}
+THM\{INVALID_HTTP_CERT\}
 ===
 
 ### Task 2: Requests And Responses
@@ -112,7 +112,7 @@ Change the method to `GET` and the URL to `/room`. Flag will be displayed in the
 ![GET request](/static/images/get.png)
 
 ==- Reveal Flag 1
-THM{YOU'RE_IN_THE_ROOM}
+THM\{YOU'RE_IN_THE_ROOM\}
 ===
 
 **Make a GET request to /blog and using the gear icon set the id parameter to 1 in the URL field**
@@ -122,7 +122,7 @@ Change the method to `GET` and the URL to `/blog`. Change the parameter `id` to 
 ![GET request with parameter](/static/images/getblog.png)
 
 ==- Reveal Flag 2
-THM{YOU_FOUND_THE_BLOG}
+THM\{YOU_FOUND_THE_BLOG\}
 ===
 
 **Make a DELETE request to /user/1**
@@ -132,7 +132,7 @@ Change the method to `DELETE` and the URL to `/user/1`. Flag will be displayed i
 ![DELETE request](/static/images/delete.png)
 
 ==- Reveal Flag 3
-THM{USER_IS_DELETED}
+THM\{USER_IS_DELETED\}
 ===
 
 **Make a PUT request to /user/2 with the username parameter set to admin**
@@ -142,7 +142,7 @@ Change the method to `PUT` and the URL to `/user/2`.  Change the parameter `user
 ![PUT request](/static/images/put.png)
 
 ==- Reveal Flag 4
-THM{USER_HAS_UPDATED}
+THM\{USER_HAS_UPDATED\}
 ===
 
 **POST the username of thm and a password of letmein to /login**
@@ -152,7 +152,7 @@ Change the method to `POST` and the URL to `/login`.  Change the parameter `user
 ![POST request](/static/images/post.png)
 
 ==- Reveal Flag 5
-THM{HTTP_REQUEST_MASTER}
+THM\{HTTP_REQUEST_MASTER\}
 ===
 
 !!!success
