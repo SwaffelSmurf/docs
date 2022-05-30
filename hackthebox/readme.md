@@ -3,7 +3,7 @@ icon: terminal
 ---
 ![](/static/headers/htb.png)
 
-# HackTheBox
+# Hack The Box
 
 Rooms:
 
