@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707334445128" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707334707330" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707334445128" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707334707330" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707334445128" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707334707330" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -237,10 +237,10 @@
         <span>Retrieve the flag from the DNS server!</span>
     </h3>
 </doc-anchor-target>
-<p>This task is very simple. Just read the description and thinl clearly. First thing I did whas writing down the given information:</p>
-<p><code v-pre>&lt;IP_ADDRESS&gt;</code> is our DNS server
-<code v-pre>dig</code> is the command we use to gather DNS information
-<code v-pre>givemetheflag.com</code> is the domain name to investigate</p>
+<p>This task is very simple. Just read the description and think clearly. First thing I did whas writing down the given information:</p>
+<p><code v-pre>&lt;IP_ADDRESS&gt;</code> is our DNS server</p>
+<p><code v-pre>dig</code> is the command we use to gather DNS information</p>
+<p><code v-pre>givemetheflag.com</code> is the domain name to investigate</p>
 <p>Now that we know that, let&#x27;s put it together in a one-liner:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">dig @&lt;IP_ADDRESS&gt; givemetheflag.com</code></pre>
