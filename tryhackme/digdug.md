@@ -9,7 +9,7 @@ date: 2022-05-31
 
 # Dig Dug
 
-Turns out this machine is a DNS server - it's time to get your shovels out. This is a very easy room to get familiar with DNS requests.
+Turns out this machine is a DNS server - it's time to get your shovels out. This is a very easy room to get familiar with DNS requests. Let's dig a dug.
 
 ---
 
