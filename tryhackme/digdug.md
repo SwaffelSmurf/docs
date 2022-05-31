@@ -17,10 +17,12 @@ Turns out this machine is a DNS server - it's time to get your shovels out. This
 
 ### Retrieve the flag from the DNS server!
 
-This task is very simple. Just read the description and thinl clearly. First thing I did whas writing down the given information:
+This task is very simple. Just read the description and think clearly. First thing I did whas writing down the given information:
 
 `<IP_ADDRESS>` is our DNS server
+
 `dig` is the command we use to gather DNS information
+
 `givemetheflag.com` is the domain name to investigate
 
 Now that we know that, let's put it together in a one-liner:
