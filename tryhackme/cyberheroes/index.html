@@ -35,11 +35,11 @@
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
     <link href="/static/favicon.ico" rel="icon" />
-    <link href="/resources/css/retype.css?v=2.2.707343868819" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=2.2.707344109201" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707343868819" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=2.2.707344109201" defer data-turbo-track="reload"></script>
     <script type="text/javascript" src="/resources/js/retype.js?v=2.2" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707343868819" defer></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=2.2.707344109201" defer></script>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-77BVC9KX4X" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -260,15 +260,6 @@
 &lt;/section&gt;</code></pre>
 </doc-codeblock></div>
 <p>The <code v-pre>&lt;script&gt;</code> tag is used to embed client-side JavaScript for the function <code v-pre>authenticate</code>. Let&#x27;s walk through the script to understand what&#x27;s happening.</p>
-<p>Variable <code v-pre>a</code> is the username (uname) from the form.
-Variable <code v-pre>b</code> is the password (pass) from the form.</p>
-<p>The script states that if variable <code v-pre>a</code> equals to <code v-pre>h3ck3rBoi</code> and variable <code v-pre>b</code> equals to the reverse string of <code v-pre>54321@terceSrepuS</code> you&#x27;ll be authenticated. To reverse the string you can Google for online tools, I&#x27;m using the terminal within Kali Linux.</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">echo &quot;54321@terceSrepuS&quot; | rev</code></pre>
-</doc-codeblock></div>
-<p>With that done we have a username and password.</p>
-<p>Username: <code v-pre>h3ck3rBoi</code></p>
-<p>Password: <code v-pre>SuperSecret@12345</code></p>
 <div class="codeblock-wrapper"><doc-codeblock>
 <pre class="language-none"><code v-pre class="language-none">&lt;script&gt;
     function authenticate() {
@@ -293,6 +284,15 @@ Variable <code v-pre>b</code> is the password (pass) from the form.</p>
     }
 &lt;/script&gt;</code></pre>
 </doc-codeblock></div>
+<p>Variable <code v-pre>a</code> is the username (uname) from the form.
+Variable <code v-pre>b</code> is the password (pass) from the form.</p>
+<p>The script states that if variable <code v-pre>a</code> equals to <code v-pre>h3ck3rBoi</code> and variable <code v-pre>b</code> equals to the reverse string of <code v-pre>54321@terceSrepuS</code> you&#x27;ll be authenticated. To reverse the string you can Google for online tools, I&#x27;m using the terminal within Kali Linux.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">echo &quot;54321@terceSrepuS&quot; | rev</code></pre>
+</doc-codeblock></div>
+<p>With that done we have a username and password.</p>
+<p>Username: <code v-pre>h3ck3rBoi</code></p>
+<p>Password: <code v-pre>SuperSecret@12345</code></p>
 <p>Now we&#x27;re able to login on the website to reveal the flag.</p>
 <p><figure class="content-center">
     <img src="/static/images/loggedin.png" alt="Flag revealed" />
