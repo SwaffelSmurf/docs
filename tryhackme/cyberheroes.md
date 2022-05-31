@@ -41,19 +41,6 @@ This room is very easy to complete. I've started by opening the URL in the brows
 
 The `<script>` tag is used to embed client-side JavaScript for the function `authenticate`. Let's walk through the script to understand what's happening.
 
-Variable `a` is the username (uname) from the form.
-Variable `b` is the password (pass) from the form.
-
-The script states that if variable `a` equals to `h3ck3rBoi` and variable `b` equals to the reverse string of `54321@terceSrepuS` you'll be authenticated. To reverse the string you can Google for online tools, I'm using the terminal within Kali Linux.
-
-    echo "54321@terceSrepuS" | rev
-
-With that done we have a username and password.
-
-Username: `h3ck3rBoi`
-
-Password: `SuperSecret@12345`
-
     <script>
         function authenticate() {
         a = document.getElementById('uname')
@@ -76,6 +63,19 @@ Password: `SuperSecret@12345`
         }
         }
     </script>
+
+Variable `a` is the username (uname) from the form.
+Variable `b` is the password (pass) from the form.
+
+The script states that if variable `a` equals to `h3ck3rBoi` and variable `b` equals to the reverse string of `54321@terceSrepuS` you'll be authenticated. To reverse the string you can Google for online tools, I'm using the terminal within Kali Linux.
+
+    echo "54321@terceSrepuS" | rev
+
+With that done we have a username and password.
+
+Username: `h3ck3rBoi`
+
+Password: `SuperSecret@12345`
 
 Now we're able to login on the website to reveal the flag.
 
