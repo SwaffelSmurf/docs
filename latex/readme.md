@@ -8,6 +8,6 @@ icon: book
 
 Rooms:
 
-| Name                    | Category | Difficulty |
-| ----------------------- | -------- | ---------- |
-| [Test LaTeX](readme.md) | Exploit  | Easy       |
+| Name              | Category | Difficulty |
+| ----------------- | -------- | ---------- |
+| [Test](readme.md) | Exploit  | Easy       |
