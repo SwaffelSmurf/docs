@@ -45,7 +45,7 @@ Turn on intercept and start playing the game. Forward the first packages untill 
 
 Now purchase the flag in the store. Your HTB\{\} flag will be printed under the back button. Make sure to make a screen capture, since it will disappear in a few seconds.
 
-![Score](/static/images/lightningfast.png)
+![Flag](/static/images/lightningfast.png)
 
 !!!success
 Congratiulations, you've completed the challenge.
